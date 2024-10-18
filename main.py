@@ -6,6 +6,12 @@ from person import Person
 
 app = FastAPI()
 
+
+@app.get("/")
+def test():
+    return {"hello": "world"}
+
+
 @app.post("/send_message")
 def send_message(request: Request, user_id: str = Body(...), message: str = Body(...)):
     client_host = request.client.host
