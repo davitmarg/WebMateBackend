@@ -62,7 +62,7 @@ class Person:
             "And you should try to suggest something related to the current page the user is vewing." + \
             "You should never inform the user about which page he is browsing, because it's obvious" + \
             "Concentrate on the content of the page and suggest something related" + \
-            "Also concentrate on the details from webpages to provide more personalized responses and never say anything general about the page which is being viewed." + \
+            "Always concentrate on the details from webpages to provide more personalized responses" + \
             "And suggest your help about the questions and provide more information about the subjects if necessary." + \
             "Keep your responses very very short, not more than 20 words unless the user asks for more"
 
@@ -172,7 +172,7 @@ class Person:
         prompt = """
     Given the page info the user is currently browsing,
     suggest a very very short message to the user or offer help if you know how to help
-    and by specific about the suggestion, don't suggest something very general. 
+    and by specific about the suggestion, don't suggest something very general
     Use english if most of the text is in english
     """
 
