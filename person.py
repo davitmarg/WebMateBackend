@@ -172,7 +172,8 @@ class Person:
         prompt = """
     Given the page info the user is currently browsing,
     suggest a very very short message to the user or offer help if you know how to help
-    and by specific about the suggestion, don't suggest something very general
+    and by specific about the suggestion, don't suggest something very general. 
+    Use english if most of the text is in english
     """
 
         response = client.chat.completions.create(
