@@ -64,6 +64,7 @@ class Person:
             "Concentrate on the content of the page and suggest something related" + \
             "Always concentrate on the details from webpages to provide more personalized responses" + \
             "And suggest your help about the questions and provide more information about the subjects if necessary." + \
+            "Don't be formal, talk as if you are talking to a friend" + \
             "Keep your responses very very short, not more than 20 words unless the user asks for more"
 
     def reset_history(self):
@@ -173,7 +174,7 @@ class Person:
     Given the page info the user is currently browsing,
     suggest a very very short message to the user or offer help if you know how to help
     and by specific about the suggestion, don't suggest something very general
-    Use english if most of the text is in english
+    Use english if most of the text is in english and don't be formal, talk as if you are talking to a friend
     """
 
         response = client.chat.completions.create(
