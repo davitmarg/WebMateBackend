@@ -32,13 +32,13 @@ def compute_similarity(input_string, reference_string):
     similarity = 1 - (distance / max_length)
     return similarity
 
+def shorten_string(s, max_length = 3000):
+    if len(s) > max_length:
+        return s[:max_length//2] + s[-max_length//2:]
 
 def compute_similarity_fast(input_string, reference_string):
-    if len(input_string) > 100:
-        input_string = input_string[:50] + input_string[-50:]
-
-    if len(reference_string) > 100:
-        reference_string = reference_string[:50] + reference_string[-50:]
+    input_string = shorten_string(input_string)
+    reference_string = shorten_string(reference_string)
 
     return compute_similarity(input_string, reference_string)
 
