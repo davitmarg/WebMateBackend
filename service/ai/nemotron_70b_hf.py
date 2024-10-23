@@ -97,7 +97,7 @@ class Nemotoron70bHF(AbstractAI):
         self.history.append({"role": "assistant", "content": response})
 
         # keep only last k messages in the history
-        k = 3
+        k = 7
         if len(self.history) > k:
             self.history = self.history[-k:]
 

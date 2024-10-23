@@ -89,7 +89,7 @@ class PersonGPT4oMini(AbstractAI):
         self.history.append({"role": "assistant", "content": response})
 
         # keep only last k messages in the history
-        k = 3
+        k = 5
         if len(self.history) > k:
             self.history = self.history[-k:]
 
@@ -150,7 +150,7 @@ class PersonGPT4oMini(AbstractAI):
                 {"role": "system", "content": prompt},
                 {"role": "user", "content": self.last_page}
             ],
-            max_tokens=2
+            max_tokens=3
         )
 
         response = response.choices[0].message.content
