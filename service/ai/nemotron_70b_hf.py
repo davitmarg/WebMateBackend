@@ -35,10 +35,12 @@ def compute_similarity(input_string, reference_string):
     similarity = 1 - (distance / max_length)
     return similarity
 
-def shorten_string(s, max_length = 3000):
+
+def shorten_string(s, max_length=400):
     if len(s) > max_length:
         return s[:max_length//2] + s[-max_length//2:]
     return s
+
 
 def compute_similarity_fast(input_string, reference_string):
     input_string = shorten_string(input_string)
@@ -51,6 +53,7 @@ class Nemotoron70bHF(AbstractAI):
     def __init__(self, name='(no name)', description='someone'):
         super().__init__()
         self.max_tokens = 100
+        self.last_page = "/"
 
     def get_system_prompt(self):
         return (
@@ -105,6 +108,9 @@ class Nemotoron70bHF(AbstractAI):
         return response
 
     def add_page(self, page):
+
+        page = shorten_string(page, 1000)
+
         if page == self.last_page or len(page) == 0:
             return
 
@@ -175,8 +181,6 @@ class Nemotoron70bHF(AbstractAI):
             response_bool = False
         elif 'true' in response:
             response_bool = True
-        else:
-            response_bool = False
 
         return response_bool
 
