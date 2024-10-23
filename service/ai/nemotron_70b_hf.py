@@ -89,7 +89,7 @@ class Nemotoron70bHF(AbstractAI):
         if page == self.last_page or len(page) == 0:
             return
 
-        if compute_similarity_fast(self.last_page, page) > 0.5:
+        if compute_similarity_fast(self.last_page, page) > 0.6:
             return
 
         self.last_page_suggestion_checked = False
