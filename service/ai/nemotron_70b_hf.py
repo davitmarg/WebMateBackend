@@ -52,7 +52,7 @@ def compute_similarity_fast(input_string, reference_string):
 class Nemotoron70bHF(AbstractAI):
     def __init__(self, name='(no name)', description='someone'):
         super().__init__()
-        self.max_tokens = 100
+        self.max_tokens = 40
         self.last_page = "/"
 
     def get_system_prompt(self):
