@@ -3,53 +3,18 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from service.ai.abstract_ai import AbstractAI
+from service.ai.abstract_ai import AbstractAI, compute_similarity_fast
 
 load_dotenv()
 key = os.getenv("OPENAI_API_KEY")
 
-client = OpenAI(
-    api_key=key
-)
-
-
-def levenshtein_distance(s, t):
-    m, n = len(s), len(t)
-    if m < n:
-        s, t = t, s
-        m, n = n, m
-    d = [list(range(n + 1))] + [[i] + [0] * n for i in range(1, m + 1)]
-    for j in range(1, n + 1):
-        for i in range(1, m + 1):
-            if s[i - 1] == t[j - 1]:
-                d[i][j] = d[i - 1][j - 1]
-            else:
-                d[i][j] = min(d[i - 1][j], d[i][j - 1], d[i - 1][j - 1]) + 1
-    return d[m][n]
-
-
-def compute_similarity(input_string, reference_string):
-    distance = levenshtein_distance(input_string, reference_string)
-    max_length = max(len(input_string), len(reference_string))
-    similarity = 1 - (distance / max_length)
-    return similarity
-
-
-def shorten_string(s, max_length=400):
-    if len(s) > max_length:
-        return s[:max_length//2] + s[-max_length//2:]
-    return s
-
-def compute_similarity_fast(input_string, reference_string):
-    input_string = shorten_string(input_string)
-    reference_string = shorten_string(reference_string)
-
-    return compute_similarity(input_string, reference_string)
-
 
 class PersonGPT4oMini(AbstractAI):
     def __init__(self, name='(no name)', description='someone'):
-        super().__init__()
+        super().__init__(name, description)
+        self.client = OpenAI(
+            api_key=key
+        )
 
     def get_system_prompt(self):
         return "Your name is WebMate AI and your job is to provide personalised suggestions based on the content of the page the user is viewing" + \
@@ -76,7 +41,10 @@ class PersonGPT4oMini(AbstractAI):
 
         self.last_message_time = time.time()
         self.history.append({"role": "user", "content": message})
-        response = client.chat.completions.create(
+
+        print(self.history[-1])
+
+        response = self.client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": self.get_system_prompt()},
@@ -119,7 +87,7 @@ class PersonGPT4oMini(AbstractAI):
       so don't concentrate on them too much.
       Write a very very short paragraph and keep only the necessary information.
     """
-        response = client.chat.completions.create(
+        response = self.client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": system_prompt},
@@ -145,7 +113,7 @@ class PersonGPT4oMini(AbstractAI):
     Return only true or false without extra text.
     """
 
-        response = client.chat.completions.create(
+        response = self.client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": prompt},
@@ -174,7 +142,7 @@ class PersonGPT4oMini(AbstractAI):
     Use english if most of the text is in english and don't be formal, talk as if you are talking to a friend
     """
 
-        response = client.chat.completions.create(
+        response = self.client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": prompt},

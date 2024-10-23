@@ -15,8 +15,8 @@ def get_session(user_id):
 
 
 def send_message(user_id, message):
-    print(f"message '{message}' from {user_id}")
     session = get_session(user_id)
+    print(f"message '{message}' from {user_id}")
     return session.send_message(message)
 
 
