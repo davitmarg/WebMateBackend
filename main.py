@@ -1,8 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.params import Body
-import user_session_manager
-
-from person import Person
+from service.user_manager import user_session_manager
 
 app = FastAPI()
 

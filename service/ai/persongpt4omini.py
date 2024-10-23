@@ -3,6 +3,8 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 
+from service.ai.abstract_ai import AbstractAI
+
 load_dotenv()
 key = os.getenv("OPENAI_API_KEY")
 
@@ -44,16 +46,9 @@ def compute_similarity_fast(input_string, reference_string):
     return compute_similarity(input_string, reference_string)
 
 
-class Person:
+class PersonGPT4oMini(AbstractAI):
     def __init__(self, name='(no name)', description='someone'):
-        self.name = name
-        self.description = description
-        self.history = []
-        self.last_page = ""
-        self.page_history = []
-        self.last_page_suggestion_checked = False
-        self.max_tokens = 50
-        self.last_message_time = 0
+        super().__init__()
 
     def get_system_prompt(self):
         return "Your name is WebMate AI and your job is to provide personalised suggestions based on the content of the page the user is viewing" + \
