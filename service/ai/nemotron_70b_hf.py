@@ -161,9 +161,9 @@ class Nemotoron70bHF(AbstractAI):
 
     def get_suggestion(self):
         prompt = """
-    Given the page info the user is currently browsing,
-    suggest a very very short message to the user or offer help if you know how to help
-    and by specific about the suggestion, don't suggest something very general
+    Given the page info that I am currently browsing,
+    suggest a very very short message or offer help if you know how to help
+    and be specific about the suggestion, don't suggest something very general
     Use english if most of the text is in english and don't be formal, talk as if you are talking to a friend.
     write text in one paragraph and avoid unnecessary characters and asterisks
     """
