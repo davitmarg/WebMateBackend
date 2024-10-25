@@ -184,4 +184,5 @@ class Nemotoron70bHF(AbstractAI):
         )
         response = response.choices[0].message.content.replace("**", "")
         self.history.append({"role": "assistant", "content": response})
+        self.last_message_time = time.time()
         return response

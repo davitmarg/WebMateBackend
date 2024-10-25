@@ -155,4 +155,5 @@ class PersonGPT4oMini(AbstractAI):
         )
         response = response.choices[0].message.content
         self.history.append({"role": "assistant", "content": response})
+        self.last_message_time = time.time()
         return response
