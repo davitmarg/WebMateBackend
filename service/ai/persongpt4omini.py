@@ -104,6 +104,9 @@ class PersonGPT4oMini(AbstractAI):
     def should_suggest(self):
         if self.last_page_suggestion_checked:
             return False
+        
+        if time.time() - self.last_message_time <= 200:
+            return False
 
         self.last_page_suggestion_checked = True
 
