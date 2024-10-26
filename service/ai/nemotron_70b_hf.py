@@ -163,6 +163,8 @@ class Nemotoron70bHF(AbstractAI):
         return response_bool
 
     def get_suggestion(self):
+        self.last_message_time = time.time()
+
         prompt = """
     Given the page info that I am currently browsing,
     suggest a very very short message or offer help if you know how to help
@@ -184,5 +186,4 @@ class Nemotoron70bHF(AbstractAI):
         )
         response = response.choices[0].message.content.replace("**", "")
         self.history.append({"role": "assistant", "content": response})
-        self.last_message_time = time.time()
         return response
