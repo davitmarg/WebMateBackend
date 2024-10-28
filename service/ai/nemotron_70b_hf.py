@@ -18,7 +18,7 @@ class Nemotoron70bHF(AbstractAI):
             api_key=key
         )
 
-        self.max_tokens = 120
+        self.max_tokens = 30
         self.last_page = "/"
 
     def get_system_prompt(self):
