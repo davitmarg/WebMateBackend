@@ -166,12 +166,10 @@ class Nemotoron70bHF(AbstractAI):
         self.last_message_time = time.time()
 
         prompt = """
-    Given the page info that I am currently browsing,
-    suggest a very very short message or offer help if you know how to help
-    and be specific about the suggestion, don't suggest something very general
-    Use english if most of the text is in english and don't be formal, talk as if you are talking to a friend.
+    I will give you the page info that I am currently browsing, and based on that give me some specific suggestion
+    Use english if most of the text on page is in english and don't be formal, talk as if you are talking to a friend.
     write text in one paragraph and avoid unnecessary characters and asterisks.
-    Write everything from the first person without any additional text
+    Write everything from the first person 
     """
 
         response = self.client.chat.completions.create(
