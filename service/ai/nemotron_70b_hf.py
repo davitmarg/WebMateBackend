@@ -165,11 +165,11 @@ class Nemotoron70bHF(AbstractAI):
     def get_suggestion(self):
         self.last_message_time = time.time()
 
-        prompt = """
+        prompt = f"""
     I will give you the page info that I am currently browsing, and based on that give me some specific suggestion
-    Use english if most of the text on page is in english and don't be formal, talk as if you are talking to a friend.
-    write text in one paragraph and avoid unnecessary characters and asterisks.
-    Write everything from the first person 
+    Use english if most of the text on page is in english and don't be very formal, 
+    talk as if you are talking to a friend
+    a single paragraph and avoid unnecessary characters, quotes and asterisks
     """
 
         response = self.client.chat.completions.create(
