@@ -3,7 +3,7 @@ from service.ai.chatgpt4omini import ChatGPT4oMini
 
 user_sessions = dict()
 
-MODEL_NAME = "Nemotoron70bHF"
+MODEL_NAME = "ChatGPT4oMini"
 
 def get_session(user_id):
     if user_id not in user_sessions:
