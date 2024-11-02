@@ -33,7 +33,6 @@ class PersonGPT4oMini(AbstractAI):
         self.history = []
         self.update_description()
         self.last_page_suggestion_checked = False
-        self.last_message_time = 0
 
     def send_message(self, message):
         if time.time() - self.last_message_time > 360:

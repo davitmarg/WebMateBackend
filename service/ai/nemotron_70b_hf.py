@@ -41,15 +41,12 @@ class Nemotoron70bHF(AbstractAI):
         self.history = []
         # self.update_description()
         self.last_page_suggestion_checked = False
-        self.last_message_time = 0
 
     def send_message(self, message):
         print(f"message '{message}' from somone")
 
         if time.time() - self.last_message_time > 360:
             self.reset_history()
-
-        print('dsfljsld;f jksd')
 
         self.last_message_time = time.time()
         self.history.append({"role": "user", "content": message})
