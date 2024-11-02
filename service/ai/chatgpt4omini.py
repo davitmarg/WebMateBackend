@@ -9,12 +9,15 @@ load_dotenv()
 key = os.getenv("OPENAI_API_KEY")
 
 
-class PersonGPT4oMini(AbstractAI):
+class ChatGPT4oMini(AbstractAI):
     def __init__(self, name='(no name)', description='someone'):
         super().__init__(name, description)
         self.client = OpenAI(
             api_key=key
         )
+
+        self.max_tokens = 35
+        self.last_page = "/"
 
     def get_system_prompt(self):
         return "Your name is WebMate AI and your job is to provide personalised suggestions based on the content of the page the user is viewing" + \
@@ -27,7 +30,7 @@ class PersonGPT4oMini(AbstractAI):
             "Always concentrate on the details from webpages to provide more personalized responses" + \
             "And suggest your help about the questions and provide more information about the subjects if necessary." + \
             "Don't be formal, talk as if you are talking to a friend" + \
-            "Keep your responses very very short, not more than 20 words unless the user asks for more"
+            "Keep your responses very very short, not more than 15 words unless the user asks for more"
 
     def reset_history(self):
         self.history = []
@@ -64,6 +67,7 @@ class PersonGPT4oMini(AbstractAI):
         return response
 
     def add_page(self, page):
+
         if page == self.last_page or len(page) == 0:
             return
 

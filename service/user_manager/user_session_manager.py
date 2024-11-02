@@ -1,5 +1,5 @@
 from service.ai.nemotron_70b_hf import Nemotoron70bHF
-from service.ai.persongpt4omini import PersonGPT4oMini
+from service.ai.chatgpt4omini import ChatGPT4oMini
 
 user_sessions = dict()
 
@@ -7,8 +7,8 @@ MODEL_NAME = "Nemotoron70bHF"
 
 def get_session(user_id):
     if user_id not in user_sessions:
-        if MODEL_NAME == "PersonGPT4oMini":
-            user_sessions[user_id] = PersonGPT4oMini()
+        if MODEL_NAME == "ChatGPT4oMini":
+            user_sessions[user_id] = ChatGPT4oMini()
         elif MODEL_NAME == "Nemotoron70bHF":
             user_sessions[user_id] = Nemotoron70bHF()
     return user_sessions[user_id]
@@ -42,7 +42,7 @@ def update_description(user_id):
 
 
 def reset(user_id):
-    user_sessions[user_id] = PersonGPT4oMini()
+    user_sessions[user_id] = ChatGPT4oMini()
     return True
 
 
