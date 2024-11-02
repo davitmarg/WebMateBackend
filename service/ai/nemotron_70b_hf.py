@@ -129,6 +129,10 @@ class Nemotoron70bHF(AbstractAI):
         if time.time() - self.last_message_time <= 200:
             return False
 
+        self.last_message_time = time.time()
+
+        print("last message time", self.last_message_time, " delta time ", time.time() - self.last_message_time)
+
         self.last_page_suggestion_checked = True
 
         prompt = """
@@ -160,7 +164,6 @@ class Nemotoron70bHF(AbstractAI):
         return response_bool
 
     def get_suggestion(self):
-        self.last_message_time = time.time()
 
         prompt = f"""
     I will give you the page info that I am currently browsing, and based on that give me some specific suggestion
