@@ -36,7 +36,7 @@ class ChatGPT4oMini(AbstractAI):
         self.history = []
         self.update_description()
         self.last_page_suggestion_checked = False
-
+    
     def send_message(self, message):
         if time.time() - self.last_message_time > 360:
             self.reset_history()
@@ -50,9 +50,8 @@ class ChatGPT4oMini(AbstractAI):
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": self.get_system_prompt()},
-                *self.history[:-1],
                 {"role": "user", "content": "I am currently on this page : " + self.last_page},
-                self.history[-1]
+                *self.history,
             ],
             max_tokens=self.max_tokens
         )
