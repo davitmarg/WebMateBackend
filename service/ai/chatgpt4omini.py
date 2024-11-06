@@ -113,9 +113,12 @@ class ChatGPT4oMini(AbstractAI):
 
         self.last_page_suggestion_checked = True
 
+        if len(self.last_page) < 5:
+            return False
+
         prompt = """
     Given the page info the user is currently browsing,
-    tell whether the user needs help/suggestion about the page or not.
+    tell whether the user really really needs help/suggestion about the page or not.
     Return only true or false without extra text.
     """
 
